@@ -95,4 +95,42 @@ void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
 
+// TODO
+
+// *** IMPORTANT ***
+//
+// check pthread flags, see if really necessary 
+//
+// srcs/init/philo_init.c - initialize last_meal_time properly, instead of the address
+//
+// srcs/dinner/philo_actions.c - race condition, write to last_meal_time happens inside philo_eat but without holding philo->meal_mutex
+//
+// Race condition: meal_counter accessed from multiple threads without a lock
+// philo->meal_counter++;           // philo_actions.c:59 
+// if (philo->meal_counter == ...)  // simulation_utils.c:57
+//
+// srcs/dinner/start_dinner.c:27 - monitor only checks philosopher [0] for the "all full" termination condition
+//
+// srcs/utils/simulation_utils.c:46–50 - "died" can be printed more than once (race between print_status and end_simulation)
+
+
+// *** LEAKS ***
+//
+// srcs/init/set_conditions.c:45–51 - create_forks doesn't free the allocation on partial failure. also if set_conditions fails after allocating conditions->forks, the forks array is leaked
+//
+// srcs/init/philo_init.c:53 - if philo_init fails, pointer stays dangling 
+
+
+// *** LESS IMPORTANT  ***
+//
+// srcs/utils/utils.c:22 - validate_num: negative-sign check is inside the loop unnecessarily 
+//
+// srcs/utils/utils.c:19 - validate_num: empty-string argument passes validation
+//
+// srcs/init/set_conditions.c:17 - check_int_max is meaningless for int-typed fields
+//
+// srcs/clean/clean.c:22 - clean_philo nulls a local pointer
+//
+// srcs/dinner/start_dinner.c:66 - check if pthread_creat fail safe is necessary 
+
 #endif
