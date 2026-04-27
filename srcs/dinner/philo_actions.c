@@ -47,7 +47,7 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->meal_mutex);
-	usleep(philo->conditions->time_to_eat * 1000);
+	ft_sleep(philo->conditions->time_to_eat, philo);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_lock(&philo->meal_mutex);
