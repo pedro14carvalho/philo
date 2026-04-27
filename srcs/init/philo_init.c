@@ -53,6 +53,7 @@ bool	philo_init(t_philo **philo, t_conditions *conditions)
 	if (init_philo_params(philo, conditions) == false)
 	{
 		free(*philo);
+		*philo = NULL;
 		return (false);
 	}
 	return (true);

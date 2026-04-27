@@ -24,7 +24,7 @@ void	monitor_routine(t_philo *philo, t_conditions *conditions)
 {
 	int	i;
 
-	while (is_simulation_running(philo) && !are_all_philosophers_full(philo, conditions))
+	while (is_simulation_running(philo) && !all_philos_full(philo, conditions))
 	{
 		i = 0;
 		while (i < conditions->num_of_philos)

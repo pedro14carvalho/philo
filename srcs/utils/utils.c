@@ -31,12 +31,6 @@ static bool	validate_num(char *arg)
 		}
 		i++;
 	}
-	// if (i > 10)
-	// {
-	// 	ft_putstr("Number too big, has to be smaller than INT_MAX "
-	// 		"(2,147,483,647)\n");
-	// 	return (false);
-	// }
 	return (true);
 }
 

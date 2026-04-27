@@ -40,11 +40,11 @@ typedef struct s_philo
 typedef struct s_conditions
 {
 	bool			simulation_ended;
-	long				num_of_philos;
+	long			num_of_philos;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
-	long				meal_target;
+	long			meal_target;
 	size_t			start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	lock;				// used to lock the whole structure
@@ -68,7 +68,7 @@ void			end_simulation(t_philo *philo);
 bool			is_philosopher_full(t_philo *philo);
 bool			check_death(t_philo *philo);
 bool			is_simulation_running(t_philo *philo);
-bool			are_all_philosophers_full(t_philo *philo, t_conditions *conditions);
+bool			all_philos_full(t_philo *philo, t_conditions *conditions);
 // print_utils.c
 void			print_status(t_philo *philo, long time, char *message);
 void			ft_putchar(char c);
@@ -88,48 +88,12 @@ void			clean_conditions(t_conditions *conditions);
 void			*philo_routine(void *data);
 void			start_dinner(t_philo *philo, t_conditions *conditions);
 void			monitor_routine(t_philo *philo, t_conditions *conditions);
-void			handle_one_philosopher(t_philo *philo,\
+void			handle_one_philosopher(t_philo *philo, \
 		t_conditions *conditions);
 
 // **** Philo Actions **** //
 void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
-
-// *** IMPORTANT ***
-
-// check pthread flags, see if really necessary
-//
-// srcs/init/philo_init.c - initialize last_meal_time properly, instead of the address
-//
-// srcs/dinner/philo_actions.c - race condition, write to last_meal_time happens inside philo_eat but without holding philo->meal_mutex
-//
-// Race condition: meal_counter accessed from multiple threads without a lock
-// philo->meal_counter++;           // philo_actions.c:59 
-// if (philo->meal_counter == ...)  // simulation_utils.c:57
-//
-// srcs/dinner/start_dinner.c:27 - monitor only checks philosopher [0] for the "all full" termination condition TODO
-//
-// srcs/utils/simulation_utils.c:46–50 - "died" can be printed more than once (race between print_status and end_simulation) TODO
-
-
-// *** LEAKS ***
-
-// srcs/init/set_conditions.c:45–51 - create_forks doesn't free the allocation on partial failure. also if set_conditions fails after allocating conditions->forks, the forks array is leaked
-//
-// srcs/init/philo_init.c:53 - if philo_init fails, pointer stays dangling
-
-
-// *** LESS IMPORTANT  ***
-
-// srcs/utils/utils.c:22 - validate_num: negative-sign check is inside the loop unnecessarily
-//
-// srcs/utils/utils.c:19 - validate_num: empty-string argument passes validation
-//
-// srcs/init/set_conditions.c:17 - check_int_max is meaningless for int-typed fields
-//
-// srcs/clean/clean.c:22 - clean_philo nulls a local pointer
-//
-// srcs/dinner/start_dinner.c:66 - check if pthread_creat fail safe is necessary
 
 #endif

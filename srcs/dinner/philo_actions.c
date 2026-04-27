@@ -39,25 +39,18 @@ void	philo_eat(t_philo *philo)
 	size_t	time;
 	size_t	timestamp;
 
-	if (philo->l_fork < philo->r_fork)
-	{
-		pick_left_fork(philo);
-		pick_right_fork(philo);
-	}
-	else
-	{
-		pick_right_fork(philo);
-		pick_left_fork(philo);
-	}
+	pick_right_fork(philo);
+	pick_left_fork(philo);
 	timestamp = get_current_time();
 	time = timestamp - philo->conditions->start_time;
 	print_status(philo, time, "is eating");
 	pthread_mutex_lock(&philo->meal_mutex);
-	// last_meal_time previously updated here. changed to see if anything would change
+	philo->last_meal_time = get_current_time();
+	pthread_mutex_unlock(&philo->meal_mutex);
 	usleep(philo->conditions->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
-	philo->last_meal_time = get_current_time();
+	pthread_mutex_lock(&philo->meal_mutex);
 	philo->meal_counter++;
 	pthread_mutex_unlock(&philo->meal_mutex);
 	return ;
