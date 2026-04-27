@@ -29,7 +29,8 @@ void	monitor_routine(t_philo *philo, t_conditions *conditions)
 		i = 0;
 		while (i < conditions->num_of_philos)
 		{
-			check_death(&philo[i]);
+			if (!is_philosopher_full(&philo[i]))
+				check_death(&philo[i]);
 			i++;
 		}
 		usleep(1000);

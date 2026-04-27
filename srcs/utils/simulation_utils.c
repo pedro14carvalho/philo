@@ -38,8 +38,6 @@ bool	check_death(t_philo *philo)
 	long	time_since_last_meal;
 	size_t	timestamp;
 
-	if (is_philosopher_full(philo))
-		return (false);
 	timestamp = get_current_time() - philo->conditions->start_time;
 	pthread_mutex_lock(&philo->meal_mutex);
 	time_since_last_meal = get_current_time() - philo->last_meal_time;
