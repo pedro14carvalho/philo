@@ -38,6 +38,8 @@ bool	check_death(t_philo *philo)
 	long	time_since_last_meal;
 	size_t	timestamp;
 
+	if (is_philosopher_full(philo))
+		return (false);
 	timestamp = get_current_time() - philo->conditions->start_time;
 	pthread_mutex_lock(&philo->meal_mutex);
 	time_since_last_meal = get_current_time() - philo->last_meal_time;
@@ -63,4 +65,24 @@ bool	is_philosopher_full(t_philo *philo)
 		return (true);
 	else
 		return (false);
+}
+
+bool	are_all_philosophers_full(t_philo *philo, t_conditions *conditions)
+{
+	int	i;
+	int	meal_counter;
+
+	if (conditions->meal_target == -1)
+		return (false);
+	i = 0;
+	while (i < conditions->num_of_philos)
+	{
+		pthread_mutex_lock(&philo[i].meal_mutex);
+		meal_counter = philo[i].meal_counter;
+		pthread_mutex_unlock(&philo[i].meal_mutex);
+		if (meal_counter < conditions->meal_target)
+			return (false);
+		i++;
+	}
+	return (true);
 }

@@ -68,6 +68,7 @@ void			end_simulation(t_philo *philo);
 bool			is_philosopher_full(t_philo *philo);
 bool			check_death(t_philo *philo);
 bool			is_simulation_running(t_philo *philo);
+bool			are_all_philosophers_full(t_philo *philo, t_conditions *conditions);
 // print_utils.c
 void			print_status(t_philo *philo, long time, char *message);
 void			ft_putchar(char c);
