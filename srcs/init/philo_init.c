@@ -23,7 +23,7 @@ static bool	init_philo_params(t_philo **philo, t_conditions *conditions)
 	{
 		(*philo)[i].id = (i + 1);
 		(*philo)[i].meal_counter = 0;
-		(*philo)[i].last_meal_time = (long)&conditions->start_time;
+		(*philo)[i].last_meal_time = (long)conditions->start_time;
 		(*philo)[i].r_fork = &conditions->forks[i];
 		(*philo)[i].l_fork = &conditions->forks[(i + 1) % num_of_philos];
 		(*philo)[i].conditions = conditions;
@@ -51,6 +51,9 @@ bool	philo_init(t_philo **philo, t_conditions *conditions)
 		return (false);
 	}
 	if (init_philo_params(philo, conditions) == false)
+	{
+		free(*philo);
 		return (false);
+	}
 	return (true);
 }

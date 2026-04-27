@@ -25,7 +25,6 @@ static void	clean_philo(t_philo *philo, t_conditions *conditions)
 		i++;
 	}
 	free(philo);
-	philo = NULL;
 }
 
 void	clean_conditions(t_conditions *conditions)
@@ -52,5 +51,6 @@ void	clean_conditions(t_conditions *conditions)
 void	clean_all(t_philo *philo, t_conditions *conditions)
 {
 	clean_philo(philo, conditions);
+	philo = NULL;
 	clean_conditions(conditions);
 }

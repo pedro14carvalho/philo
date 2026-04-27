@@ -63,7 +63,11 @@ void	start_dinner(t_philo *philo, t_conditions *conditions)
 	i = 0;
 	while (i < conditions->num_of_philos)
 	{
-		pthread_create(&philo[i].philo_thread_id, NULL, philo_routine, &philo[i]);
+		if (pthread_create(&philo[i].philo_thread_id, NULL, philo_routine, &philo[i]) != 0)
+		{
+			ft_putstr("error: failed to create threads\n");
+			return ;
+		}
 		i++;
 	}
 	monitor_routine(philo, conditions);

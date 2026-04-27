@@ -40,11 +40,11 @@ typedef struct s_philo
 typedef struct s_conditions
 {
 	bool			simulation_ended;
-	int				num_of_philos;
+	long				num_of_philos;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
-	int				meal_target;
+	long				meal_target;
 	size_t			start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	lock;				// used to lock the whole structure
@@ -95,11 +95,9 @@ void			philo_eat(t_philo *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_think(t_philo *philo);
 
-// TODO
-
 // *** IMPORTANT ***
-//
-// check pthread flags, see if really necessary 
+
+// check pthread flags, see if really necessary
 //
 // srcs/init/philo_init.c - initialize last_meal_time properly, instead of the address
 //
@@ -109,21 +107,21 @@ void			philo_think(t_philo *philo);
 // philo->meal_counter++;           // philo_actions.c:59 
 // if (philo->meal_counter == ...)  // simulation_utils.c:57
 //
-// srcs/dinner/start_dinner.c:27 - monitor only checks philosopher [0] for the "all full" termination condition
+// srcs/dinner/start_dinner.c:27 - monitor only checks philosopher [0] for the "all full" termination condition TODO
 //
-// srcs/utils/simulation_utils.c:46–50 - "died" can be printed more than once (race between print_status and end_simulation)
+// srcs/utils/simulation_utils.c:46–50 - "died" can be printed more than once (race between print_status and end_simulation) TODO
 
 
 // *** LEAKS ***
-//
+
 // srcs/init/set_conditions.c:45–51 - create_forks doesn't free the allocation on partial failure. also if set_conditions fails after allocating conditions->forks, the forks array is leaked
 //
-// srcs/init/philo_init.c:53 - if philo_init fails, pointer stays dangling 
+// srcs/init/philo_init.c:53 - if philo_init fails, pointer stays dangling
 
 
 // *** LESS IMPORTANT  ***
-//
-// srcs/utils/utils.c:22 - validate_num: negative-sign check is inside the loop unnecessarily 
+
+// srcs/utils/utils.c:22 - validate_num: negative-sign check is inside the loop unnecessarily
 //
 // srcs/utils/utils.c:19 - validate_num: empty-string argument passes validation
 //
@@ -131,6 +129,6 @@ void			philo_think(t_philo *philo);
 //
 // srcs/clean/clean.c:22 - clean_philo nulls a local pointer
 //
-// srcs/dinner/start_dinner.c:66 - check if pthread_creat fail safe is necessary 
+// srcs/dinner/start_dinner.c:66 - check if pthread_creat fail safe is necessary
 
 #endif

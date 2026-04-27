@@ -17,13 +17,13 @@ static bool	validate_num(char *arg)
 	int	i;
 
 	i = 0;
+	if (!arg[i] || arg[i] == '-')
+	{
+		ft_putstr("Invalid argument: only positive numbers are accepted\n");
+		return (false);
+	}
 	while (arg[i])
 	{
-		if (arg[0] == '-')
-		{
-			ft_putstr("Invalid argument: only positive numbers are accepted\n");
-			return (false);
-		}
 		if (!is_digit(arg[i]))
 		{
 			ft_putstr("Invalid argument: only numbers are accepted\n");
@@ -31,12 +31,12 @@ static bool	validate_num(char *arg)
 		}
 		i++;
 	}
-	if (i > 10)
-	{
-		ft_putstr("Number too big, has to be smaller than INT_MAX"
-			"(2,147,483,647)\n");
-		return (false);
-	}
+	// if (i > 10)
+	// {
+	// 	ft_putstr("Number too big, has to be smaller than INT_MAX "
+	// 		"(2,147,483,647)\n");
+	// 	return (false);
+	// }
 	return (true);
 }
 

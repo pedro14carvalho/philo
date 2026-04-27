@@ -20,8 +20,8 @@ static bool	check_int_max(t_conditions *conditions)
 		|| conditions->time_to_sleep > INT_MAX
 		|| conditions->meal_target > INT_MAX)
 	{
-		ft_putstr("Number too big, has to be smaller than INT_MAX\
-				(2,147,483,647)\n");
+		ft_putstr("Number too big, has to be smaller than INT_MAX "
+				"(2,147,483,647)\n");
 		return (false);
 	}
 	else
@@ -47,6 +47,7 @@ static bool	create_forks(t_conditions *conditions, int num_of_philos)
 			ft_putstr("error: not enough memory\n");
 			while (--i >= 0)
 				pthread_mutex_destroy(&conditions->forks[i]);
+			free(conditions->forks);
 			return (false);
 		}
 		i++;

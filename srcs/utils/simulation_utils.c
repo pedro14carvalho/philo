@@ -54,7 +54,12 @@ bool	check_death(t_philo *philo)
 
 bool	is_philosopher_full(t_philo *philo)
 {
-	if (philo->meal_counter == philo->conditions->meal_target)
+	int	meal_counter;
+
+	pthread_mutex_lock(&philo->meal_mutex);
+	meal_counter = philo->meal_counter;
+	pthread_mutex_unlock(&philo->meal_mutex);
+	if (meal_counter == philo->conditions->meal_target)
 		return (true);
 	else
 		return (false);
