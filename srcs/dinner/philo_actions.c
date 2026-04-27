@@ -53,10 +53,11 @@ void	philo_eat(t_philo *philo)
 	time = timestamp - philo->conditions->start_time;
 	print_status(philo, time, "is eating");
 	pthread_mutex_lock(&philo->meal_mutex);
-	philo->last_meal_time = get_current_time();
+	// last_meal_time previously updated here. changed to see if anything would change
 	usleep(philo->conditions->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
+	philo->last_meal_time = get_current_time();
 	philo->meal_counter++;
 	pthread_mutex_unlock(&philo->meal_mutex);
 	return ;
