@@ -72,6 +72,6 @@ size_t	get_current_time(void)
 {
 	struct timeval	time;
 
-	gettimeofday(&time, NULL); // TODO double check if fail guard is needed
+	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

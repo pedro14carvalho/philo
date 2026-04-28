@@ -21,12 +21,11 @@ static bool	check_int_max(t_conditions *conditions)
 		|| conditions->meal_target > INT_MAX)
 	{
 		ft_putstr("Number too big, has to be smaller than INT_MAX "
-				"(2,147,483,647)\n");
+			"(2,147,483,647)\n");
 		return (false);
 	}
 	else
 		return (true);
-
 }
 
 static bool	create_forks(t_conditions *conditions, int num_of_philos)
@@ -76,6 +75,7 @@ static bool	set_condition_params(t_conditions *conditions, int ac, char **av)
 	}
 	return (true);
 }
+
 bool	set_conditions(t_conditions *conditions, int ac, char **av)
 {
 	if (set_condition_params(conditions, ac, av) == false)
