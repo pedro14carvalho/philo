@@ -47,7 +47,7 @@ typedef struct s_conditions
 	long			meal_target;
 	size_t			start_time;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	lock;				// used to lock the whole structure
+	pthread_mutex_t	lock;
 }		t_conditions;
 
 // **** Init **** //
@@ -88,7 +88,7 @@ void			clean_conditions(t_conditions *conditions);
 void			*philo_routine(void *data);
 void			start_dinner(t_philo *philo, t_conditions *conditions);
 void			monitor_routine(t_philo *philo, t_conditions *conditions);
-void			handle_one_philosopher(t_philo *philo, \
+void			handle_one_philosopher(t_philo *philo,\
 		t_conditions *conditions);
 
 // **** Philo Actions **** //
