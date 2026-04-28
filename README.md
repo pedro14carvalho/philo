@@ -18,9 +18,7 @@ This will automatically compile the program with the appropriate -pthread flag, 
 
 #### Usage:
 ```
-```
 ./philo num_of_philosophers time_to_die time_to_eat time_to_sleep [num_of_meals_each_philosopher_must_eat]
-```
 ```
 
 
