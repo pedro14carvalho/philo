@@ -55,9 +55,11 @@ static bool	create_forks(t_conditions *conditions, int num_of_philos)
 	return (true);
 }
 
-bool	set_conditions(t_conditions *conditions, int ac, char **av)
+static bool	set_condition_params(t_conditions *conditions, int ac, char **av)
 {
 	conditions->num_of_philos = ft_atol(av[1]);
+	if (!conditions->num_of_philos)
+		return (false);
 	conditions->time_to_die = ft_atol(av[2]);
 	conditions->time_to_eat = ft_atol(av[3]);
 	conditions->time_to_sleep = ft_atol(av[4]);
@@ -72,6 +74,12 @@ bool	set_conditions(t_conditions *conditions, int ac, char **av)
 		ft_putstr("error: time variables must be over 60ms\n");
 		return (false);
 	}
+	return (true);
+}
+bool	set_conditions(t_conditions *conditions, int ac, char **av)
+{
+	if (set_condition_params(conditions, ac, av) == false)
+		return (false);
 	if (check_int_max(conditions) == false)
 		return (false);
 	conditions->start_time = get_current_time();

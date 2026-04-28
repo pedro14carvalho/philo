@@ -38,13 +38,13 @@ bool	validate_args(int ac, char **av)
 {
 	int	i;
 
-	i = 1;
 	if (ac < 5 || ac > 6)
 	{
 		ft_putstr("usage: ./philo number_of_philosophers time_to_die ");
 		ft_putstr("time_to_eat time_to_sleep [maximum amout of meals]\n");
 		return (false);
 	}
+	i = 1;
 	while (i < ac)
 	{
 		if (validate_num(av[i]) == false)
