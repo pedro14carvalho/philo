@@ -40,16 +40,10 @@ void	monitor_routine(t_philo *philo, t_conditions *conditions)
 void	*philo_routine(void *data)
 {
 	t_philo			*philo;
-	t_conditions	cond;
 
 	philo = (t_philo *)data;
 	if (philo->id % 2 == 0)
 		ft_sleep(philo->conditions->time_to_eat, philo);
-	// else
-	// {
-	// 	ft_sleep((cond.time_to_die - (cond.time_to_eat
-	// 				+ cond.time_to_sleep)) / 2, philo);
-	// }
 	while (!is_philosopher_full(philo))
 	{
 		philo_eat(philo);
