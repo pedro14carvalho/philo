@@ -43,7 +43,6 @@ void	*philo_routine(void *data)
 	t_conditions	cond;
 
 	philo = (t_philo *)data;
-	cond = *philo->conditions;
 	if (philo->id % 2 == 0)
 		ft_sleep(philo->conditions->time_to_eat, philo);
 	// else
@@ -75,6 +74,8 @@ void	start_dinner(t_philo *philo, t_conditions *conditions)
 				&philo[i]) != 0)
 		{
 			ft_putstr("error: failed to create threads\n");
+			while (--i >= 0)
+				pthread_join(philo[i].philo_thread_id, NULL);
 			return ;
 		}
 		i++;
