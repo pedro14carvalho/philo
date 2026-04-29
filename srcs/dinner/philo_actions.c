@@ -14,36 +14,21 @@
 
 void	pick_right_fork(t_philo *philo)
 {
-	size_t	time;
-	size_t	timestamp;
-
 	pthread_mutex_lock(philo->r_fork);
-	timestamp = get_current_time();
-	time = timestamp - philo->conditions->start_time;
-	print_status(philo, time, "has taken a fork");
+	print_status(philo, "has taken a fork");
 }
 
 void	pick_left_fork(t_philo *philo)
 {
-	size_t	time;
-	size_t	timestamp;
-
 	pthread_mutex_lock(philo->l_fork);
-	timestamp = get_current_time();
-	time = timestamp - philo->conditions->start_time;
-	print_status(philo, time, "has taken a fork");
+	print_status(philo, "has taken a fork");
 }
 
 void	philo_eat(t_philo *philo)
 {
-	size_t	time;
-	size_t	timestamp;
-
 	pick_right_fork(philo);
 	pick_left_fork(philo);
-	timestamp = get_current_time();
-	time = timestamp - philo->conditions->start_time;
-	print_status(philo, time, "is eating");
+	print_status(philo, "is eating");
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->meal_mutex);
@@ -58,23 +43,13 @@ void	philo_eat(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
-	size_t	time;
-	size_t	timestamp;
-
-	timestamp = get_current_time();
-	time = timestamp - philo->conditions->start_time;
-	print_status(philo, time, "is sleeping");
+	print_status(philo, "is sleeping");
 	ft_sleep(philo->conditions->time_to_sleep, philo);
 	return ;
 }
 
 void	philo_think(t_philo *philo)
 {
-	size_t	time;
-	size_t	timestamp;
-
-	timestamp = get_current_time();
-	time = timestamp - philo->conditions->start_time;
-	print_status(philo, time, "is thinking");
+	print_status(philo, "is thinking");
 	return ;
 }

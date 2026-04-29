@@ -12,12 +12,15 @@
 
 #include "../../header/philo.h"
 
-void	print_status(t_philo *philo, long time, char *message)
+void	print_status(t_philo *philo, char *message)
 {
+	long	timestamp;
+
 	pthread_mutex_lock(&philo->conditions->lock);
 	if (philo->conditions->simulation_ended == false)
 	{
-		ft_putnbr(time);
+		timestamp = get_current_time() - philo->conditions->start_time;
+		ft_putnbr(timestamp);
 		ft_putchar(' ');
 		ft_putnbr(philo->id);
 		ft_putchar(' ');

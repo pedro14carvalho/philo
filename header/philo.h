@@ -70,7 +70,7 @@ bool			check_death(t_philo *philo);
 bool			is_simulation_running(t_philo *philo);
 bool			all_philos_full(t_philo *philo, t_conditions *conditions);
 // print_utils.c
-void			print_status(t_philo *philo, long time, char *message);
+void			print_status(t_philo *philo, char *message);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
 void			ft_putnbr(long nb);

@@ -36,15 +36,13 @@ bool	is_simulation_running(t_philo *philo)
 bool	check_death(t_philo *philo)
 {
 	long	time_since_last_meal;
-	size_t	timestamp;
 
 	pthread_mutex_lock(&philo->meal_mutex);
-	timestamp = get_current_time() - philo->conditions->start_time;
 	time_since_last_meal = get_current_time() - philo->last_meal_time;
 	pthread_mutex_unlock(&philo->meal_mutex);
 	if (time_since_last_meal >= philo->conditions->time_to_die)
 	{
-		print_status(philo, timestamp, "died");
+		print_status(philo, "died");
 		end_simulation(philo);
 		return (true);
 	}

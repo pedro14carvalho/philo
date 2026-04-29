@@ -14,9 +14,9 @@
 
 void	handle_one_philosopher(t_philo *philo, t_conditions *conditions)
 {
-	print_status(philo, 0, "has taken a fork");
+	print_status(philo, "has taken a fork");
 	usleep(conditions->time_to_die * 1000);
-	print_status(philo, conditions->time_to_die, "died");
+	print_status(philo, "died");
 	return ;
 }
 
@@ -46,11 +46,11 @@ void	*philo_routine(void *data)
 	cond = *philo->conditions;
 	if (philo->id % 2 == 0)
 		ft_sleep(philo->conditions->time_to_eat, philo);
-	else
-	{
-		ft_sleep((cond.time_to_die - (cond.time_to_eat
-					+ cond.time_to_sleep)) / 2, philo);
-	}
+	// else
+	// {
+	// 	ft_sleep((cond.time_to_die - (cond.time_to_eat
+	// 				+ cond.time_to_sleep)) / 2, philo);
+	// }
 	while (!is_philosopher_full(philo))
 	{
 		philo_eat(philo);
