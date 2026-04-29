@@ -58,10 +58,13 @@ void	ft_sleep(long time_to_sleep, t_philo *philo)
 {
 	size_t	initial_time;
 
-	(void)philo;
 	initial_time = get_current_time();
 	while (get_current_time() - initial_time < (size_t)time_to_sleep)
+	{
+		if (!is_simulation_running(philo))
+			return ;
 		usleep(100);
+	}
 	return ;
 }
 

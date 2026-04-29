@@ -45,7 +45,7 @@ void	*philo_routine(void *data)
 	philo = (t_philo *)data;
 	cond = *philo->conditions;
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		ft_sleep(philo->conditions->time_to_eat, philo);
 	else
 	{
 		ft_sleep((cond.time_to_die - (cond.time_to_eat
