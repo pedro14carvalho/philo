@@ -49,4 +49,4 @@ Used copilot to understand the project's core concepts such as:
 - Structuring array of structs;
 - Concept and application of mutexes;
 - Assistance with `pthread` functions (how to use them, what arguments they expect and the values they return);
-- Help with debugging when 'gdb' was not enough (it's really hard to debug multiple threads!!!).
+- Help with debugging when `gdb` was not enough (it's really hard to debug multiple threads!!!).
