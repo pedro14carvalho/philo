@@ -42,7 +42,7 @@ Run the simulation using the following syntax:
 * [Sourceware's entry on Debugging Programs with Multiple Threads](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Threads.html) — really helpful and detailed instructions on how to better use `gdb` when debugging programs with multiple threads.
 * [Dina ELgammal's Medium article about the project](https://medium.com/@denaelgammal/dining-philosophers-problem-42-project-guide-mandatory-part-a20fb8dc530e) — helpful guide overall and where I learned about the (lifesaving) -fsanitize flag to detect thrading problems while the program runs.
 * [nafuka11](https://github.com/nafuka11/philosophers-visualizer)'s [visualizer](https://nafuka11.github.io/philosophers-visualizer/) — really great tool to visualize and detect problems in a simpler way, using a GUI instead of the logs the program outputs.
-
+* [dantonik's tester](https://github.com/dantonik/42-philosophers-tester) — a real lifesaver at the end, the best tester I could find online. It allowed me to make multiple tests without any hassle.
 
 ### AI Usage
 Used copilot to understand the project's core concepts such as:
