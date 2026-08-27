@@ -1,6 +1,6 @@
 *This project has been created as part of the 42 curriculum by josepedr.*
 # Philosophers
-
+<img src="resources/philo.png" alt="philosophers custom image">
 
 ## Description
 The Dining Philosophers problem is a classic synchronization and concurrency project from the 42 School curriculum. The objective is to learn the basics of creating a program with multiple threads and managing shared resources.
